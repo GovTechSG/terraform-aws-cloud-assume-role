@@ -13,6 +13,26 @@ module 'role-gcc' {
     "read-only-access" : "arn:aws:iam::aws:policy/ReadOnlyAccess",
   }
 
+  managed_policies = {
+    myPolicy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "events:List*",
+        "events:Describe*",
+        "events:Get*",
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "MISC"
+    }
+  ]
+}
+EOF
+  }
+
   techpass_email_addresses = [
     "your_techpass_email@tech.gov.sg",
   ]

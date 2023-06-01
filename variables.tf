@@ -59,3 +59,9 @@ variable "permissions_boundary" {
   type        = string
   default     = ""
 }
+
+variable "managed_policies" {
+  description = "Custom polices to be created managed policies (not inline)."
+  type        = map(string)
+  default     = {}
+}

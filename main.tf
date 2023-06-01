@@ -71,4 +71,17 @@ resource "aws_iam_role_policy_attachment" "attach_custom_policy" {
   policy_arn = aws_iam_policy.policy[0].arn
 }
 
-# Maps the given list of existing policies to the role
+# Create as managed policies and attach accordingly
+resource "aws_iam_policy" "managed_policies" {
+  for_each = var.managed_policies
+
+  name   = "${var.name}-${each.key}-policy"
+  policy = each.value
+}
+
+resource "aws_iam_role_policy_attachment" "managed_policies" {
+  for_each = var.managed_policies
+
+  role       = aws_iam_role.iam_role.name
+  policy_arn = aws_iam_policy.managed_policies[each.key].arn
+}
