@@ -44,6 +44,7 @@ resource "aws_iam_role" "iam_role" {
   name                  = var.name
   path                  = var.path
   description           = var.description
+  permissions_boundary  = var.permissions_boundary
   assume_role_policy    = data.aws_iam_policy_document.iam_trusted.json
   max_session_duration  = var.max_session_duration
   force_detach_policies = true

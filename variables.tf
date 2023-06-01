@@ -53,3 +53,9 @@ variable "agency_assume_local_role_id" {
   description = "your agency_assume_local role_id, use `aws iam list-roles --query \"Roles[?starts_with(RoleName, 'AWSReservedSSO_agency_assume_local')].[RoleId]\" --output text`"
   type        = string
 }
+
+variable "permissions_boundary" {
+  description = "ARN of permissions boundary policy to attach to role"
+  type        = string
+  default     = ""
+}
