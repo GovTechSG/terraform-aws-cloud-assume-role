@@ -30,13 +30,13 @@ module 'role-gcc' {
     }
   ]
 }
-EOF
-  }
+EOF}
 
   techpass_email_addresses = [
     "your_techpass_email@tech.gov.sg",
   ]
 
+  # Using external_id https://aws.amazon.com/blogs/apn/securely-using-external-id-for-accessing-aws-accounts-owned-by-others/
   external_id = "some_external_id"
 
   # Will not create if empty, if need custom policy, use the EOF syntax

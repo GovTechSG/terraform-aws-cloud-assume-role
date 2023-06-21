@@ -23,6 +23,12 @@ data "aws_iam_policy_document" "trusted_accounts" {
       ]
     }
 
+    condition {
+      test     = "StringEquals"
+      variable = "aws:userid"
+      values   = formatlist("%s:%s", var.agency_assume_local_role_id, var.techpass_email_addresses)
+    }
+
     dynamic "condition" {
       for_each = length(var.external_id) > 0 ? [1] : []
       content {
@@ -70,6 +76,7 @@ resource "aws_iam_role_policy_attachment" "attach_custom_policy" {
   role       = aws_iam_role.iam_role.name
   policy_arn = aws_iam_policy.policy[0].arn
 }
+
 
 # Create as managed policies and attach accordingly
 resource "aws_iam_policy" "managed_policies" {

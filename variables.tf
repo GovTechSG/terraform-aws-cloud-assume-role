@@ -46,7 +46,6 @@ variable "attach_policies" {
 variable "techpass_email_addresses" {
   description = "list of TechPass users' email addresses to allow use of this role"
   type        = list(string)
-  default     = []
 }
 
 variable "agency_assume_local_role_id" {
